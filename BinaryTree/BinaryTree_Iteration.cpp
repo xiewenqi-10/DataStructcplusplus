@@ -1,23 +1,23 @@
 
-// #include<iostream>
-// using namespace std;
-// #include<stack>
-// #include<queue>
-// #include<vector>
-// #include<algorithm>
+#include<iostream>
+using namespace std;
+#include<stack>
+#include<queue>
+#include<vector>
+#include<algorithm>
 
-// template<class T>
-// class TreeNode          //¶ş²æÊ÷´æ´¢½á¹¹
-// {
-// public:
-//     T val;
-//     TreeNode<T>*left;
-//     TreeNode<T>*right;
-//     TreeNode(T x):val(x),left(nullptr),right(nullptr){}
-// };
+template<class T>
+class TreeNode          //äºŒå‰æ ‘å­˜å‚¨ç»“æ„
+{
+public:
+    T val;
+    TreeNode<T>*left;
+    TreeNode<T>*right;
+    TreeNode(T x):val(x),left(nullptr),right(nullptr){}
+};
 
 /**
- * @description: µü´ú¶ş²æÊ÷
+ * @description: è¿­ä»£äºŒå‰æ ‘
  * @param {type} 
  * @return {type} 
  */
@@ -25,25 +25,25 @@
 #include"TreeNode.h"
 
 template<class T>
-class Solution          //¶ş²æÊ÷Àà
+class Solution          //äºŒå‰æ ‘ç±»
 {
 private:
-    TreeNode<T>*root;   //¸ù½áµã
+    TreeNode<T>*root;   //æ ¹ç»“ç‚¹
 
-    TreeNode<T>*pre_in_create(vector<T>&,T ,T ,vector<T>&,T,T); //Ç°Ğò±éÀúÓëÖĞĞò±éÀú¹¹Ôì¶ş²æÊ÷
-    TreeNode<T>*in_post_create(vector<T>&,T,T, vector<T>&,T,T); //ÖĞĞò±éÀúÓëºóĞò±éÀú¹¹Ôì¶ş²æÊ÷
-    TreeNode<T>*pre_post_create(vector<T>&,T,T,vector<T>&,T,T); //ÖĞĞò±éÀúÓëºóĞò±éÀú¹¹Ôì¶ş²æÊ÷(Á¦¿Û889Ìâ)
+    TreeNode<T>*pre_in_create(vector<T>&,T ,T ,vector<T>&,T,T); //å‰åºéå†ä¸ä¸­åºéå†æ„é€ äºŒå‰æ ‘
+    TreeNode<T>*in_post_create(vector<T>&,T,T, vector<T>&,T,T); //ä¸­åºéå†ä¸ååºéå†æ„é€ äºŒå‰æ ‘
+    TreeNode<T>*pre_post_create(vector<T>&,T,T,vector<T>&,T,T); //ä¸­åºéå†ä¸ååºéå†æ„é€ äºŒå‰æ ‘(åŠ›æ‰£889é¢˜)
 public:
 
-    TreeNode<T>*buildTree(vector<T>&,vector<T>&);               //µ÷ÓÃÇ°ĞòÓëÖĞĞò¹¹ÔìµÄ¶ş²æÊ÷
-    TreeNode<T>*buildTree1(vector<T>&,vector<T>&);              //µ÷ÓÃÖĞĞòÓëºóĞò¹¹ÔìµÄ¶ş²æÊ÷
-    TreeNode<T>*buildTree2(vector<T>&,vector<T>&);              //µ÷ÓÃÇ°ĞòÓëºóĞò¹¹ÔìµÄ¶ş²æÊ÷(Á¦¿Û889Ìâ)
+    TreeNode<T>*buildTree(vector<T>&,vector<T>&);               //è°ƒç”¨å‰åºä¸ä¸­åºæ„é€ çš„äºŒå‰æ ‘
+    TreeNode<T>*buildTree1(vector<T>&,vector<T>&);              //è°ƒç”¨ä¸­åºä¸ååºæ„é€ çš„äºŒå‰æ ‘
+    TreeNode<T>*buildTree2(vector<T>&,vector<T>&);              //è°ƒç”¨å‰åºä¸ååºæ„é€ çš„äºŒå‰æ ‘(åŠ›æ‰£889é¢˜)
 
-    vector<T> levelTraversal(TreeNode<T>*);                     //²ãĞò±éÀú1
-    vector<vector<T>>levelTraversals(TreeNode<T>*);             //²ãĞò±éÀú2(Á¦¿Û102Ìâ)
-    vector<T> preorderTraversal(TreeNode<T>*);                  //µü´úÇ°Ğò±éÀú
-    vector<T> inorderTraversal(TreeNode<T>*);                   //µü´úÖĞĞò±éÀú
-    vector<T> postorderTraversal(TreeNode<T>*);                 //µü´úºóĞò±éÀú
+    vector<T> levelTraversal(TreeNode<T>*);                     //å±‚åºéå†1
+    vector<vector<T>>levelTraversals(TreeNode<T>*);             //å±‚åºéå†2(åŠ›æ‰£102é¢˜)
+    vector<T> preorderTraversal(TreeNode<T>*);                  //è¿­ä»£å‰åºéå†
+    vector<T> inorderTraversal(TreeNode<T>*);                   //è¿­ä»£ä¸­åºéå†
+    vector<T> postorderTraversal(TreeNode<T>*);                 //è¿­ä»£ååºéå†
 };
 
 
@@ -56,9 +56,9 @@ template<class T>
 TreeNode<T>*Solution<T>::pre_in_create(vector<T>&preorder,T pre_begin,T pre_end,vector<T>&inorder,T in_begin,T in_end)
 {
     if(pre_end<pre_begin) return nullptr;
-    TreeNode<T>* root=new TreeNode<T>(preorder[pre_begin]);//Ç°Ğò±éÀú¸ù½áµãÔÚÆğÊ¼Î»ÖÃ
+    TreeNode<T>* root=new TreeNode<T>(preorder[pre_begin]);//å‰åºéå†æ ¹ç»“ç‚¹åœ¨èµ·å§‹ä½ç½®
 
-    T index=in_begin;                                      //ÓÃÀ´²éÕÒÖĞĞò±éÀúµÄ¸ù½áµã
+    T index=in_begin;                                      //ç”¨æ¥æŸ¥æ‰¾ä¸­åºéå†çš„æ ¹ç»“ç‚¹
     while (preorder[pre_begin]!=inorder[index])
     {
         ++index;
@@ -78,9 +78,9 @@ template<class T>
 TreeNode<T>*Solution<T>::in_post_create(vector<T>&inorder,T in_begin,T in_end,vector<T>&postorder,T post_begin,T post_end)
 {
     if(in_end<in_begin) return nullptr;
-    TreeNode<T>* root=new TreeNode<T>(postorder[post_end]);//ºóĞò±éÀú¸ù½áµãÔÚÄ©Î²Î»ÖÃ
+    TreeNode<T>* root=new TreeNode<T>(postorder[post_end]);//ååºéå†æ ¹ç»“ç‚¹åœ¨æœ«å°¾ä½ç½®
 
-    T index=in_begin;                                      //ÓÃÀ´²éÕÒÖĞĞò±éÀúµÄ¸ù½áµã
+    T index=in_begin;                                      //ç”¨æ¥æŸ¥æ‰¾ä¸­åºéå†çš„æ ¹ç»“ç‚¹
     while (postorder[post_end]!=inorder[index])
     {
         ++index;
@@ -101,9 +101,9 @@ template<class T>
 TreeNode<T>*Solution<T>::pre_post_create(vector<T>&preorder,T pre_begin,T pre_end,vector<T>&postorder,T post_begin,T post_end)
 {
     if(pre_begin>pre_end) return nullptr;
-    TreeNode<T>*root=new TreeNode<T>(preorder[pre_begin]);   //Ç°Ğò±éÀú¸ù½áµãÔÚÆğµãÎ»ÖÃ
+    TreeNode<T>*root=new TreeNode<T>(preorder[pre_begin]);   //å‰åºéå†æ ¹ç»“ç‚¹åœ¨èµ·ç‚¹ä½ç½®
 
-    if(pre_begin==pre_end){return root;}                //ÕÒ³ö¸ù½áµã
+    if(pre_begin==pre_end){return root;}                //æ‰¾å‡ºæ ¹ç»“ç‚¹
     T index=post_begin;
     while (preorder[pre_begin+1]!=postorder[index])
     {
@@ -121,32 +121,32 @@ vector<T> Solution<T>::levelTraversal(TreeNode<T>*root)
 {
     vector<T>v;
     queue<TreeNode<T>*>q;
-    if(root==nullptr) return v;     //Èô½áµãÎª¿ÕÊ±£¬·µ»Ø½áµãv
+    if(root==nullptr) return v;     //è‹¥ç»“ç‚¹ä¸ºç©ºæ—¶ï¼Œè¿”å›ç»“ç‚¹v
     
     q.push(root);
-    while (!q.empty())              //Èô¶ÓÁĞ²»Îª¿Õ£¬ÉêÇë½áµã "x"»ñÈ¡¶ÓÍ·£¬È»ºó¸ù³ö×óÓÒº¢×Ó½ø
+    while (!q.empty())              //è‹¥é˜Ÿåˆ—ä¸ä¸ºç©ºï¼Œç”³è¯·ç»“ç‚¹ "x"è·å–é˜Ÿå¤´ï¼Œç„¶åæ ¹å‡ºå·¦å³å­©å­è¿›
     {
         TreeNode<T>*x=q.front();
         v.push_back(x->val);
         q.pop();
 
-        if(x->left!=nullptr) {q.push(x->left);} //Èô±éÀúµ½×óº¢×ÓÊ±£¬×óº¢×ÓÈë¶ÓÁĞ
+        if(x->left!=nullptr) {q.push(x->left);} //è‹¥éå†åˆ°å·¦å­©å­æ—¶ï¼Œå·¦å­©å­å…¥é˜Ÿåˆ—
 
-        if(x->right!=nullptr){q.push(x->right);}//Èô±éÀúµ½ÓÒº¢×ÓÊ±£¬ÓÒº¢×ÓÈë¶ÓÁĞ   
+        if(x->right!=nullptr){q.push(x->right);}//è‹¥éå†åˆ°å³å­©å­æ—¶ï¼Œå³å­©å­å…¥é˜Ÿåˆ—   
     }
     return v;
 }
 
-/* Á¦¿ÛµÚ102Ìâ */
+/* åŠ›æ‰£ç¬¬102é¢˜ */
 template<class T>
 vector<vector<T>> Solution<T>::levelTraversals(TreeNode<T>*root)
 {
     vector<vector<T>>v;
     queue<TreeNode<T>*>q;
-    if(root==nullptr) return v; //Èô½áµãÎª¿ÕÊ±£¬·µ»Ø½áµãv
+    if(root==nullptr) return v; //è‹¥ç»“ç‚¹ä¸ºç©ºæ—¶ï¼Œè¿”å›ç»“ç‚¹v
 
     q.push(root);
-    while (!q.empty())          //Èô¶ÓÁĞ²»Îª¿Õ£¬ÉêÇë½áµã "x"»ñÈ¡¶ÓÍ·£¬È»ºó¸ù³ö×óÓÒº¢×Ó½ø
+    while (!q.empty())          //è‹¥é˜Ÿåˆ—ä¸ä¸ºç©ºï¼Œç”³è¯·ç»“ç‚¹ "x"è·å–é˜Ÿå¤´ï¼Œç„¶åæ ¹å‡ºå·¦å³å­©å­è¿›
     {
         vector<T>temp;
         T len=q.size();
@@ -156,8 +156,8 @@ vector<vector<T>> Solution<T>::levelTraversals(TreeNode<T>*root)
             q.pop();
             temp.push_back(x->val);
 
-            if(x->left!=nullptr)  q.push(x->left); //Èô±éÀúµ½×óº¢×ÓÊ±£¬×óº¢×ÓÈë¶ÓÁĞ
-            if(x->right!=nullptr) q.push(x->right);//Èô±éÀúµ½ÓÒº¢×ÓÊ±£¬ÓÒº¢×ÓÈë¶ÓÁĞ   
+            if(x->left!=nullptr)  q.push(x->left); //è‹¥éå†åˆ°å·¦å­©å­æ—¶ï¼Œå·¦å­©å­å…¥é˜Ÿåˆ—
+            if(x->right!=nullptr) q.push(x->right);//è‹¥éå†åˆ°å³å­©å­æ—¶ï¼Œå³å­©å­å…¥é˜Ÿåˆ—   
         }
         v.push_back(temp);
     }
@@ -177,12 +177,12 @@ vector<T> Solution<T>::preorderTraversal(TreeNode<T>*root)
         while (temp)
         {
             s.push(temp);
-            v.push_back(temp->val); //¸ù
-            temp=temp->left;        //×ó
+            v.push_back(temp->val); //æ ¹
+            temp=temp->left;        //å·¦
         }
         temp=s.top();
         s.pop();
-        temp=temp->right;           //ÓÒ
+        temp=temp->right;           //å³
     }
     return v;
 }
@@ -201,12 +201,12 @@ vector<T>Solution<T>::inorderTraversal(TreeNode<T>*root)
         while (temp)
         {
             s.push(temp);
-            temp=temp->left;        //×ó
+            temp=temp->left;        //å·¦
         }
         temp=s.top();
         s.pop();
-        v.push_back(temp->val);     //¸ù
-        temp=temp->right;           //ÓÒ
+        v.push_back(temp->val);     //æ ¹
+        temp=temp->right;           //å³
     }
     return v;
 }
@@ -225,14 +225,14 @@ vector<T>Solution<T>::postorderTraversal(TreeNode<T>*root)
         while (temp)
         {
             s.push(temp);
-            v.push_back(temp->val);  //¸ù
-            temp=temp->right;        //ÓÒ
+            v.push_back(temp->val);  //æ ¹
+            temp=temp->right;        //å³
         }
         temp=s.top();
         s.pop();
-        temp=temp->left;             //×ó
+        temp=temp->left;             //å·¦
     }
-    std::reverse(v.begin(),v.end()); //·´×ª->×óÓÒ¸ù
+    std::reverse(v.begin(),v.end()); //åè½¬->å·¦å³æ ¹
     return v;       
 }
 
@@ -240,28 +240,28 @@ int main(int argc, char const *argv[])
 {
     TreeNode<int>*root;
     Solution<int> s;
-    vector<int>preorder{3,9,2,20,15,7};           //Ç°Ğò±éÀú
-    //vector<int>inorder{9,3,15,20,7};            //ÖĞĞò±éÀú
-    vector<int>postorder{2,9,15,7,20,3};     //ºóĞò±éÀú
-    //root=s.buildTree(preorder,inorder);         //µ÷ÓÃÇ°ĞòÓëÖĞĞò¹¹ÔìµÄ¶ş²æÊ÷
+    vector<int>preorder{3,9,2,20,15,7};           //å‰åºéå†
+    //vector<int>inorder{9,3,15,20,7};            //ä¸­åºéå†
+    vector<int>postorder{2,9,15,7,20,3};     //ååºéå†
+    //root=s.buildTree(preorder,inorder);         //è°ƒç”¨å‰åºä¸ä¸­åºæ„é€ çš„äºŒå‰æ ‘
     // root=s.buildTree1(inorder,postorder);
     root=s.buildTree2(preorder,postorder);
     vector<int>level_data=s.levelTraversal(root);
-    cout<<"²ãĞò±éÀú:";
+    cout<<"å±‚åºéå†:";
     for(int i=0;i<level_data.size();i++)
         cout<<level_data[i]<<" ";cout<<endl;
 
     vector<int>pre_data=s.preorderTraversal(root);
-    cout<<"Ç°Ğò±éÀú:";
+    cout<<"å‰åºéå†:";
     for(int i=0;i<pre_data.size();i++)
         cout<<pre_data[i]<<" ";cout<<endl;
 
-    cout<<"ÖĞĞò±éÀú:";
+    cout<<"ä¸­åºéå†:";
     vector<int>in_data=s.inorderTraversal(root);
     for(int i=0;i<in_data.size();i++)
         cout<<in_data[i]<<" ";cout<<endl;
 
-    cout<<"ºóĞò±éÀú";
+    cout<<"ååºéå†";
     vector<int>post_data=s.postorderTraversal(root);
     for(int i=0;i<post_data.size();i++)
         cout<<post_data[i]<<" ";cout<<endl;
